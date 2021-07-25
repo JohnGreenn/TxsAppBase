@@ -22,6 +22,16 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Apk 签名的那些事：https://www.jianshu.com/p/a1f8e5896aa2
+//    signingConfigs {
+//        config {
+//            storeFile file('/Users/gelingqiang/AndroidStudioProjects/key/txsbase.jks')
+//            storePassword 'hp123456'
+//            keyAlias 'txsapp'
+//            keyPassword 'hp123456'
+//        }
+//    }
+
     buildTypes {
         release {
             // 调试模式开关
@@ -36,6 +46,9 @@ android {
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // 签名信息配置
+            //signingConfig signingConfigs.config
 
             // 仅保留两种架构的 so 库，根据 Bugly 统计得出
             ndk {
