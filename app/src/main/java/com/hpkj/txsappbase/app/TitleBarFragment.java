@@ -16,7 +16,7 @@ import com.hpkj.txsappbase.action.TitleBarAction;
  *    author : glq
  *    desc   : 带标题栏的 Fragment 基类
  */
-public abstract class TitleBarFragment<A extends AppActivity> extends AppFragment<A>
+public abstract class TitleBarFragment<A extends AppActivity,T> extends AppFragment<A,T>
         implements TitleBarAction {
 
     /** 标题栏对象 */

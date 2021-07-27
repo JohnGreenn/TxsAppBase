@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
@@ -27,7 +28,7 @@ import java.util.List;
  *    author : glq
  *    desc   : Fragment 基类
  */
-public abstract class BaseFragment<A extends BaseActivity> extends Fragment implements
+public abstract class BaseFragment<A extends BaseActivity,T> extends Fragment implements
         ActivityAction, ResourcesAction, HandlerAction, ClickAction, BundleAction, KeyboardAction {
 
     /** Activity 对象 */
@@ -36,6 +37,8 @@ public abstract class BaseFragment<A extends BaseActivity> extends Fragment impl
     private View mRootView;
     /** 当前是否加载过 */
     private boolean mLoading;
+
+    public T binding;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -52,7 +55,10 @@ public abstract class BaseFragment<A extends BaseActivity> extends Fragment impl
         }
 
         mLoading = false;
+
         mRootView = inflater.inflate(getLayoutId(), container, false);
+        binding = (T) DataBindingUtil.bind(mRootView);
+
         initView();
         return mRootView;
     }
@@ -191,7 +197,7 @@ public abstract class BaseFragment<A extends BaseActivity> extends Fragment impl
                 continue;
             }
             // 将按键事件派发给子 Fragment 进行处理
-            if (((BaseFragment<?>) fragment).dispatchKeyEvent(event)) {
+            if (((BaseFragment<?,T>) fragment).dispatchKeyEvent(event)) {
                 // 如果子 Fragment 拦截了这个事件，那么就不交给父 Fragment 处理
                 return true;
             }

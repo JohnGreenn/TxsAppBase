@@ -148,7 +148,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements Activ
                 continue;
             }
             // 将按键事件派发给 Fragment 进行处理
-            if (((BaseFragment<?>) fragment).dispatchKeyEvent(event)) {
+            if (((BaseFragment<?,?>) fragment).dispatchKeyEvent(event)) {
                 // 如果 Fragment 拦截了这个事件，那么就不交给 Activity 处理
                 return true;
             }

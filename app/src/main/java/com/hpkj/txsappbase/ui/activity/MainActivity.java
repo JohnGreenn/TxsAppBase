@@ -33,13 +33,13 @@ public final class MainActivity extends AppActivity<ActivityMainBinding>
     private ViewPager mViewPager;
     private BottomNavigationView mBottomNavigationView;
 
-    private FragmentPagerAdapter<AppFragment<?>> mPagerAdapter;
+    private FragmentPagerAdapter<AppFragment<?,?>> mPagerAdapter;
 
     public static void start(Context context) {
         start(context, HomeFragment.class);
     }
 
-    public static void start(Context context, Class<? extends AppFragment<?>> fragmentClass) {
+    public static void start(Context context, Class<? extends AppFragment<?,?>> fragmentClass) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(IntentKey.INDEX, fragmentClass);
         if (!(context instanceof Activity)) {

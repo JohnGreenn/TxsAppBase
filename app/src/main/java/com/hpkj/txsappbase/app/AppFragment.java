@@ -20,7 +20,7 @@ import okhttp3.Call;
  *    author : glq
  *    desc   : 业务 Fragment 基类
  */
-public abstract class AppFragment<A extends AppActivity> extends BaseFragment<A>
+public abstract class AppFragment<A extends AppActivity,T> extends BaseFragment<A,T>
         implements ToastAction, OnHttpListener<Object> {
 
     /** 状态栏沉浸 */
@@ -72,7 +72,7 @@ public abstract class AppFragment<A extends AppActivity> extends BaseFragment<A>
     @Override
     public void onSucceed(Object result) {
         if (result instanceof HttpData) {
-            toast(((HttpData<?>) result).getMessage());
+            toast(((HttpData<?>) result).getInfo());
         }
     }
 

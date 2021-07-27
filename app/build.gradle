@@ -68,7 +68,10 @@ android {
             // 测试包下的 BuglyId
             buildConfigField('String', 'BUGLY_ID', '"请自行替换 Bugly 上面的 AppID"')
             // 测试服务器的主机地址
-            buildConfigField('String', 'HOST_URL', '"https://www.test.baidu.com/"')
+            buildConfigField('String', 'HOST_URL', '"http://testlm.spshop.cn:50000/"')
+
+            //buildConfigField "String", "BaseURL", "\"http://testlm.spshop.cn:50000/\""
+            buildConfigField "String", "BaseSC", "\"http://testlm.spshop.cn:6001\""
 
             // 仅保留两种架构的 so 库，根据 Bugly 统计得出
             ndk {
@@ -135,4 +138,17 @@ dependencies {
     // 动画解析库：https://github.com/airbnb/lottie-android
     // 动画资源：https://lottiefiles.com、https://icons8.com/animated-icons
     implementation 'com.airbnb.android:lottie:3.6.1'
+
+    // 刷新框架：https://github.com/scwang90/SmartRefreshLayout
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.3'
+    implementation 'com.scwang.smart:refresh-header-material:2.0.3'
+
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.hjq:xxpermissions:10.5'
+
+    // 日志打印框架：https://github.com/JakeWharton/timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //banner
+    implementation 'com.youth.banner:banner:2.1.0'
 }

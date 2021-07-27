@@ -197,7 +197,7 @@ public abstract class AppActivity<T> extends BaseActivity<T> implements ToastAct
     @Override
     public void onSucceed(Object result) {
         if (result instanceof HttpData) {
-            toast(((HttpData<?>) result).getMessage());
+            toast(((HttpData<?>) result).getInfo());
         }
     }
 

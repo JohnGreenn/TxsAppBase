@@ -2,9 +2,10 @@ package com.hpkj.txsappbase.ui.fragment;
 
 import com.hpkj.txsappbase.R;
 import com.hpkj.txsappbase.app.TitleBarFragment;
+import com.hpkj.txsappbase.databinding.FragmentMyBinding;
 import com.hpkj.txsappbase.ui.activity.MainActivity;
 
-public class MyFragment extends TitleBarFragment<MainActivity> {
+public class MyFragment extends TitleBarFragment<MainActivity, FragmentMyBinding> {
 
     public static MyFragment newInstance() {
         return new MyFragment();

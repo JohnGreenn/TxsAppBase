@@ -9,7 +9,7 @@ public class HttpData<T> {
     /** 返回码 */
     private int code;
     /** 提示语 */
-    private String msg;
+    private String info;
     /** 数据 */
     private T data;
 
@@ -17,8 +17,8 @@ public class HttpData<T> {
         return code;
     }
 
-    public String getMessage() {
-        return msg;
+    public String getInfo() {
+        return info;
     }
 
     public T getData() {
