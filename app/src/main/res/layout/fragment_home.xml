@@ -12,6 +12,12 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragment.HomeFragment">
 
+        <com.hjq.bar.TitleBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backButton="false"
+            app:title="@string/home_nav_found" />
+
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,73 +33,82 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
                 app:scrimVisibleHeightTrigger="100dp">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax"
-                    app:srcCompat="@drawable/example_bg" />
+                    app:layout_collapseMode="parallax">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/tb_home_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="?android:attr/actionBarSize"
-                    app:layout_collapseMode="pin" >
-
-                    <LinearLayout
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingVertical="10dp">
+                        android:scaleType="centerCrop"
+                        app:layout_collapseMode="parallax"
+                        app:srcCompat="@drawable/example_bg" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_home_address"
-                            android:layout_width="wrap_content"
+                    <com.youth.banner.Banner
+                        xmlns:banner="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/banner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        banner:banner_radius="5dp"
+                        android:layout_centerInParent="true"
+                        banner:banner_indicator_normal_color="@android:color/white"
+                        banner:banner_indicator_selected_color="#5CB85C" />
+
+                </RelativeLayout>
+
+
+
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/tb_home_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="?android:attr/actionBarSize"
+                        app:layout_collapseMode="pin" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="合肥"
-                            android:textColor="@color/white"
-                            android:textSize="15sp" />
+                            android:orientation="horizontal"
+                            android:paddingVertical="10dp">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_home_hint"
-                            android:layout_width="0px"
-                            android:layout_height="match_parent"
-                            android:layout_marginHorizontal="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_search_bar_transparent_bg"
-                            android:gravity="center"
-                            android:text="搜索关键词"
-                            android:textColor="@color/white60"
-                            android:textSize="14sp" />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_home_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="合肥"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/iv_home_search"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            app:srcCompat="@drawable/search_ic"
-                            app:tint="@color/white" />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_home_hint"
+                                android:layout_width="0px"
+                                android:layout_height="match_parent"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/home_search_bar_transparent_bg"
+                                android:gravity="center"
+                                android:text="搜索关键词"
+                                android:textColor="@color/white60"
+                                android:textSize="14sp" />
 
-                    </LinearLayout>
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_home_search"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="10dp"
+                                app:srcCompat="@drawable/search_ic"
+                                app:tint="@color/white" />
 
-                </androidx.appcompat.widget.Toolbar>
+                        </LinearLayout>
 
-
-                <com.youth.banner.Banner
-                    xmlns:banner="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/banner1"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    banner:banner_radius="5dp"
-                    banner:banner_indicator_normal_color="@android:color/white"
-                    banner:banner_indicator_selected_color="#5CB85C" />
-
-
+                    </androidx.appcompat.widget.Toolbar>
 
             </com.hpkj.txsappbase.widget.layout.XCollapsingToolbarLayout>
+
 
 
 

@@ -44,12 +44,16 @@ public final class HomeFragment extends TitleBarFragment<MainActivity, FragmentH
         return R.layout.fragment_home;
     }
 
+    {
+
+    }
+
     @Override
     protected void initView() {
 
         mPagerAdapter = new FragmentPagerAdapter<>(this);
         mPagerAdapter.addFragment(StatusFragment.newInstance(), "列表演示");
-        mPagerAdapter.addFragment(StatusFragment.newInstance(), "列表演示");
+        mPagerAdapter.addFragment(TestListFragment.newInstance(), "TestList演示");
         binding.vpHomePager.setAdapter(mPagerAdapter);
         binding.tlHomeTab.setupWithViewPager(binding.vpHomePager);
 
@@ -59,9 +63,15 @@ public final class HomeFragment extends TitleBarFragment<MainActivity, FragmentH
         //设置渐变监听
         binding.ctlHomeBar.setOnScrimsListener(this);
 
+
+
+    }
+
+    @Override
+    protected void initData() {
         EasyHttp.post(this)
                 .api(new BannerApi()
-                .setBname("home_banner"))
+                        .setBname("home_banner"))
                 .request(new HttpCallback<HttpData<ArrayList<StartBean>>>(this) {
 
                     @Override
@@ -74,16 +84,9 @@ public final class HomeFragment extends TitleBarFragment<MainActivity, FragmentH
                         binding.banner1.setBannerGalleryEffect(18, 10);
                         //添加透明效果(画廊配合透明效果更棒)
                         binding.banner1.addPageTransformer(new AlphaPageTransformer());
-                        //AlphaPageTransformer()
 
                     }
                 });
-
-    }
-
-    @Override
-    protected void initData() {
-
     }
 
     /**
