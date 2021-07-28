@@ -17,7 +17,9 @@ import com.hpkj.txsappbase.base.FragmentPagerAdapter;
 import com.hpkj.txsappbase.databinding.ActivityMainBinding;
 import com.hpkj.txsappbase.other.DoubleClickHelper;
 import com.hpkj.txsappbase.other.IntentKey;
+import com.hpkj.txsappbase.ui.fragment.FindFragment;
 import com.hpkj.txsappbase.ui.fragment.HomeFragment;
+import com.hpkj.txsappbase.ui.fragment.MessageFragment;
 import com.hpkj.txsappbase.ui.fragment.MyFragment;
 
 import static com.hjq.http.EasyUtils.postDelayed;
@@ -79,8 +81,8 @@ public final class MainActivity extends AppActivity<ActivityMainBinding>
     protected void initData() {
         mPagerAdapter = new FragmentPagerAdapter<>(this);
         mPagerAdapter.addFragment(HomeFragment.newInstance());
-        mPagerAdapter.addFragment(HomeFragment.newInstance());
-        mPagerAdapter.addFragment(HomeFragment.newInstance());
+        mPagerAdapter.addFragment(FindFragment.newInstance());
+        mPagerAdapter.addFragment(MessageFragment.newInstance());
         mPagerAdapter.addFragment(MyFragment.newInstance());
 
         mViewPager.setAdapter(mPagerAdapter);

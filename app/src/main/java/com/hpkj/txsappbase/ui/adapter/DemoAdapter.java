@@ -22,6 +22,6 @@ public class DemoAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     @Override
     protected void convert(@NotNull BaseViewHolder helper,String item) {
         //helper.setText(R.id.tv_picker_name,"This is an Item, pos: "+ (helper.getAdapterPosition() - getHeaderLayoutCount()));
-        helper.setText(R.id.tv_picker_name,"This is :"+item);
+        helper.setText(R.id.id_num,"This is :"+item);
     }
 }

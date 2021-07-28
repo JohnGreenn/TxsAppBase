@@ -29,6 +29,7 @@ import com.hpkj.txsappbase.http.model.RequestHandler;
 import com.hpkj.txsappbase.http.model.RequestServer;
 import com.hpkj.txsappbase.manager.ActivityManager;
 import com.hpkj.txsappbase.other.DebugLoggerTree;
+import com.hpkj.txsappbase.other.EncryptUtil;
 import com.hpkj.txsappbase.other.SmartBallPulseFooter;
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
@@ -150,7 +151,7 @@ public final class AppApplication extends Application {
                 // 添加全局请求参数
                 //.addParam("token", "6666666")
                 // 添加全局请求头
-                //.addHeader("time", "20191030")
+                .addHeader("RequestId",EncryptUtil.getRequestId(5).trim())
                 // 启用配置
                 .into();
 

@@ -20,7 +20,7 @@ import java.util.List;
 public class TestListFragment extends TitleBarFragment<AppActivity, TestFragmentBinding> {
 
     private List<String> mDatas;
-    private DemoAdapter adapter;
+    //private DemoAdapter adapter;
 
     public static TestListFragment newInstance() {
         return new TestListFragment();
@@ -35,8 +35,13 @@ public class TestListFragment extends TitleBarFragment<AppActivity, TestFragment
     @Override
     protected void initView() {
 
-        adapter = new DemoAdapter(R.layout.test_item,mDatas);
+        mDatas = new ArrayList<>();
+        for (int i = 'A'; i < 'Z'; i++) {
+            mDatas.add("" + (char) i);
+        }
+
         binding.rvTestList.setLayoutManager(new LinearLayoutManager(getContext()));
+        DemoAdapter adapter = new DemoAdapter(R.layout.test_item,mDatas);
         binding.rvTestList.setAdapter(adapter);
 
     }
@@ -46,22 +51,8 @@ public class TestListFragment extends TitleBarFragment<AppActivity, TestFragment
 
         // 设置新的数据方法
         //adapter.setNewInstance(analogData());
-        mDatas = new ArrayList<>();
-        for (int i = 'A'; i < 'Z'; i++) {
-            mDatas.add("" + (char) i);
-        }
 
-    }
 
-    /**
-     * 模拟数据
-     */
-    private List<String> analogData() {
-        List<String> data = new ArrayList<>();
-        for (int i = adapter.getItemCount(); i < adapter.getItemCount() + 20; i++) {
-            data.add("test你是第" + i + "条目");
-        }
-        return data;
     }
 
 }
