@@ -125,27 +125,26 @@ public class MessageFragment extends TitleBarFragment<MainActivity, FragmentMeas
         toast(mAdapter.getItem(position));
     }
 
+
+    @Override
+    public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
+        //postDelayed(() -> {
+            mAdapter.clearData();
+            index = 1;
+            //mAdapter.setData(analogData());
+            initData();
+            binding.rlMessRefresh.finishRefresh();
+        //}, 500);
+    }
+
     @Override
     public void onLoadMore(@NonNull @NotNull RefreshLayout refreshLayout) {
         postDelayed(() -> {
             index++;
             //mAdapter.addData(analogData());
             initData();
-            //binding.rlMessRefresh.finishLoadMore();
-
             //mAdapter.setLastPage(mAdapter.getItemCount() >= 100);
             //binding.rlMessRefresh.setNoMoreData(mAdapter.isLastPage());
-        }, 500);
-    }
-
-    @Override
-    public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
-        postDelayed(() -> {
-            mAdapter.clearData();
-            index = 1;
-            //mAdapter.setData(analogData());
-            initData();
-            binding.rlMessRefresh.finishRefresh();
         }, 500);
     }
 }

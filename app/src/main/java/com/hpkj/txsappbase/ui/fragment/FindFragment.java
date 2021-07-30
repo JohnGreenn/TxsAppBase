@@ -123,7 +123,7 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
         postDelayed(() -> {
             index++;
             initData();
-
+            binding.rlFindRefresh.finishRefresh();
         }, 1000);
     }
 
