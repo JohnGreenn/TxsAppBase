@@ -11,6 +11,7 @@ import android.os.Build;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
@@ -44,6 +45,8 @@ import timber.log.Timber;
  *    desc   : 应用入口
  */
 public final class AppApplication extends Application {
+
+    public static AppCompatActivity activity;
 
     //@DebugLog("启动耗时")
     @Override

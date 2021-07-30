@@ -1,5 +1,6 @@
 package com.hpkj.txsappbase.http.request;
 
+import com.hjq.http.annotation.HttpHeader;
 import com.hjq.http.config.IRequestApi;
 import com.hpkj.txsappbase.http.model.ScServer;
 
@@ -19,6 +20,16 @@ public class GetGoodsListApi extends ScServer implements IRequestApi {
     private int sortType;//排序类型
     private int pageIndex;//页码
     private int pageSize;//分页大小
+
+    @HttpHeader
+    private String RequestId;// 加密头
+
+    public  GetGoodsListApi setHeaderPass(String RequestId) {
+        this.RequestId = RequestId;
+        return this;
+    }
+
+
 
 
     public GetGoodsListApi setLabel(String labelId) {

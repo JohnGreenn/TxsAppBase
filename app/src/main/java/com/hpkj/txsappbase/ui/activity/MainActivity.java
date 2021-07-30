@@ -15,6 +15,7 @@ import com.hpkj.txsappbase.app.AppActivity;
 import com.hpkj.txsappbase.app.AppFragment;
 import com.hpkj.txsappbase.base.FragmentPagerAdapter;
 import com.hpkj.txsappbase.databinding.ActivityMainBinding;
+import com.hpkj.txsappbase.manager.ActivityManager;
 import com.hpkj.txsappbase.other.DoubleClickHelper;
 import com.hpkj.txsappbase.other.IntentKey;
 import com.hpkj.txsappbase.ui.fragment.FindFragment;
@@ -151,7 +152,7 @@ public final class MainActivity extends AppActivity<ActivityMainBinding>
         moveTaskToBack(false);
         postDelayed(() -> {
             // 进行内存优化，销毁掉所有的界面
-            //ActivityManager.getInstance().finishAllActivities();
+            ActivityManager.getInstance().finishAllActivities();
             // 销毁进程（注意：调用此 API 可能导致当前 Activity onDestroy 方法无法正常回调）
             // System.exit(0);
         }, 300);
