@@ -34,6 +34,7 @@ import com.hpkj.txsappbase.other.EncryptUtil;
 import com.hpkj.txsappbase.other.SmartBallPulseFooter;
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.simple.SimpleComponent;
 
 
 import okhttp3.OkHttpClient;

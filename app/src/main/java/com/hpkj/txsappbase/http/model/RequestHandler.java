@@ -85,7 +85,7 @@ public final class RequestHandler implements IRequestHandler {
         }
 
         // 打印这个 Json 或者文本
-        EasyLog.json(text);
+        //EasyLog.json(text);
 
         if (String.class.equals(type)) {
             return text;

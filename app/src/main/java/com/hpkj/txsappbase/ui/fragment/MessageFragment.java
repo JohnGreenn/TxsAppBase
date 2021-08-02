@@ -81,7 +81,8 @@ public class MessageFragment extends TitleBarFragment<MainActivity, FragmentMeas
                             mAdapter.setData(result.getData());
                         } else {
                             if(result.getData() == null || result.getData().size() == 0){
-                                binding.rlMessRefresh.finishRefresh();
+                                binding.rlMessRefresh.finishLoadMore();
+                                binding.rlMessRefresh.finishLoadMoreWithNoMoreData();//https://github.com/scwang90/SmartRefreshLayout/issues/1003
                                 binding.rlMessRefresh.setNoMoreData(true);
                             } else {
                                 mAdapter.addData(result.getData());
@@ -143,6 +144,7 @@ public class MessageFragment extends TitleBarFragment<MainActivity, FragmentMeas
             index++;
             //mAdapter.addData(analogData());
             initData();
+
             //mAdapter.setLastPage(mAdapter.getItemCount() >= 100);
             //binding.rlMessRefresh.setNoMoreData(mAdapter.isLastPage());
         }, 500);

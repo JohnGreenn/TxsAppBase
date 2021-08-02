@@ -44,10 +44,6 @@ public final class HomeFragment extends TitleBarFragment<MainActivity, FragmentH
         return R.layout.fragment_home;
     }
 
-    {
-
-    }
-
     @Override
     protected void initView() {
 
@@ -69,6 +65,7 @@ public final class HomeFragment extends TitleBarFragment<MainActivity, FragmentH
 
     @Override
     protected void initData() {
+
         EasyHttp.post(this)
                 .api(new BannerApi()
                         .setBname("home_banner"))
@@ -77,7 +74,6 @@ public final class HomeFragment extends TitleBarFragment<MainActivity, FragmentH
                     @Override
                     public void onSucceed(HttpData<ArrayList<StartBean>> result) {
                         ToastUtils.show("banner 请求成功，请看日志");
-
                         binding.banner1.setAdapter(new ImageAdapter(result.getData()));
                         binding.banner1.setIndicator(new CircleIndicator(getContext()));
                         //添加画廊效果

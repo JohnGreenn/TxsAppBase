@@ -120,9 +120,13 @@ public final class SmartBallPulseFooter extends SimpleComponent implements Refre
 
     @Override
     public int onFinish(@NonNull RefreshLayout layout, boolean success) {
+        super.onFinish(layout, success);
         mStarted = false;
         mStartTime = 0;
         mPaint.setColor(mNormalColor);
+/*        if (!mNoMoreData) {
+
+        }*/
         return 0;
     }
 
