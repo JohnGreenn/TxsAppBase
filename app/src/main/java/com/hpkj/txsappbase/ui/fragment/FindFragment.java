@@ -1,5 +1,7 @@
 package com.hpkj.txsappbase.ui.fragment;
 
+import android.annotation.SuppressLint;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -27,6 +29,9 @@ import com.hpkj.txsappbase.http.request.GetGoodsListApi;
 import com.hpkj.txsappbase.http.response.ShopGoodsListBean;
 import com.hpkj.txsappbase.http.response.StartBean;
 import com.hpkj.txsappbase.other.EncryptUtil;
+import com.hpkj.txsappbase.other.GridSpaceDecoration;
+import com.hpkj.txsappbase.other.GridSpaceItemDecoration;
+import com.hpkj.txsappbase.other.HorizontalItemDecoration;
 import com.hpkj.txsappbase.ui.activity.MainActivity;
 import com.hpkj.txsappbase.ui.adapter.GoodsListAdapter;
 import com.hpkj.txsappbase.ui.adapter.ImageAdapter;
@@ -66,16 +71,28 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
         return R.layout.fragment_find;
     }
 
+
     @Override
     protected void initView() {
-        binding.findRecycler.setLayoutManager(new GridLayoutManager(getContext(),2));
+
+        GridLayoutManager manager = new GridLayoutManager(getActivity(),2);
+        int spacing = getResources().getDimensionPixelSize(R.dimen.dp_10);
+        /*manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return mAdapter.hasHeaderLayout() || mAdapter.hasFooterLayout() ? manager.getSpanCount() : 1;
+            }
+        });*/
+        //binding.findRecycler.setLayoutManager(manager);
+        //binding.findRecycler.addItemDecoration(new HorizontalItemDecoration(spacing,getContext()));
+
+
         mAdapter = new GoodsListAdapter();
         binding.findRecycler.setAdapter(mAdapter);
+        binding.findRecycler.setLayoutManager(manager);
+        // 添加分割线
+        binding.findRecycler.addItemDecoration(new GridSpaceDecoration((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics())));
         binding.rlFindRefresh.setOnRefreshLoadMoreListener(this);
-
-
-
-
     }
 
     @Override
