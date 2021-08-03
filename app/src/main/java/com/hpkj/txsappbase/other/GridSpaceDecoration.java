@@ -18,10 +18,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
  */
 public final class GridSpaceDecoration extends RecyclerView.ItemDecoration {
 
-    private final int mSpace;
+    private final int spacing;
 
     public GridSpaceDecoration(int space) {
-        mSpace = space;
+        spacing = space;
     }
 
     @Override
@@ -29,23 +29,42 @@ public final class GridSpaceDecoration extends RecyclerView.ItemDecoration {
 
     @SuppressWarnings("all")
     @Override
-    public void getItemOffsets(@NonNull Rect rect, @NonNull View view, RecyclerView recyclerView, @NonNull RecyclerView.State state) {
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, RecyclerView recyclerView, @NonNull RecyclerView.State state) {
         int position = recyclerView.getChildAdapterPosition(view);
         int spanCount = ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount();
+        int column = position % spanCount;
 
-
-            // 每一行的最后一个才留出右边间隙
-            if ((position + 1) % spanCount == 0) {
-                rect.right = mSpace;
+        int cc = ((BaseQuickAdapter) recyclerView.getAdapter()).getHeaderLayoutCount();
+        if(cc > 0) {
+            if(position == 0) {
+                outRect.set(0,0,0,0);
+            } else {
+                if(column == 0) {
+                    outRect.set(spacing / 2,spacing,spacing,0);
+                } else {
+                    outRect.set(spacing,spacing,spacing / 2,0);
+                }
             }
-
-            // 只有第一行才留出顶部间隙
-            if (position < spanCount) {
-                rect.top = mSpace;
+        } else {
+            if(column == 1) {
+                outRect.set(spacing/2,spacing,spacing,0);
+            } else {
+                outRect.set(spacing,spacing,spacing/2,0);
             }
+        }
 
-            rect.bottom = mSpace;
-            rect.left = mSpace;
+        /*// 每一行的最后一个才留出右边间隙
+        if ((position + 1) % spanCount == 0) {
+            rect.right = mSpace;
+        }
+
+        // 只有第一行才留出顶部间隙
+        if (position < spanCount) {
+            rect.top = mSpace;
+        }
+
+        rect.bottom = mSpace;
+        rect.left = mSpace;*/
     }
 
     @Override

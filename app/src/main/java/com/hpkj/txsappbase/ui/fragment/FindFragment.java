@@ -22,6 +22,7 @@ import com.hpkj.txsappbase.R;
 import com.hpkj.txsappbase.app.TitleBarFragment;
 import com.hpkj.txsappbase.databinding.FragmentFindBinding;
 import com.hpkj.txsappbase.databinding.FragmentMeassgeBinding;
+import com.hpkj.txsappbase.databinding.FragmentTopAdsBinding;
 import com.hpkj.txsappbase.databinding.FragmentTopBannerBinding;
 import com.hpkj.txsappbase.http.model.HttpData;
 import com.hpkj.txsappbase.http.request.BannerApi;
@@ -87,11 +88,13 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
         //binding.findRecycler.addItemDecoration(new HorizontalItemDecoration(spacing,getContext()));
 
 
+        binding.findRecycler.setLayoutManager(new GridLayoutManager(getContext(),2));
         mAdapter = new GoodsListAdapter();
         binding.findRecycler.setAdapter(mAdapter);
-        binding.findRecycler.setLayoutManager(manager);
+        //binding.findRecycler.setLayoutManager(manager);
         // 添加分割线
         binding.findRecycler.addItemDecoration(new GridSpaceDecoration((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics())));
+        //binding.findRecycler.addItemDecoration(new GridSpaceItemDecoration(2,10,10));
         binding.rlFindRefresh.setOnRefreshLoadMoreListener(this);
     }
 
@@ -112,8 +115,9 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
                         itemTop = DataBindingUtil.inflate(LayoutInflater.from(getActivity()),R.layout.fragment_top_banner,getActivity().findViewById(android.R.id.content),false);
 
                         if(mAdapter.getHeaderLayoutCount()==0) {
-                            //mAdapter.removeHeaderView(itemTop.getRoot());
                             mAdapter.addHeaderView(itemTop.getRoot());
+                            //头部增加图标
+                            addAds();
                         }
 
                         itemTop.shopBanner.setAdapter(new ImageAdapter(result.getData()));
@@ -124,6 +128,7 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
                         itemTop.shopBanner.addPageTransformer(new AlphaPageTransformer());
                     }
                 });
+
 
         //EasyConfig.getInstance().addHeader("RequestId",EncryptUtil.getRequestId(5).trim());
         EasyHttp.get(this)
@@ -158,6 +163,14 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
 
         //mAdapter.setNewInstance(analogData());
     }
+
+    public void addAds() {
+
+        FragmentTopAdsBinding itemAdsBind = DataBindingUtil.inflate(LayoutInflater.from(getActivity()),R.layout.fragment_top_ads,getActivity().findViewById(android.R.id.content),false);
+        mAdapter.addHeaderView(itemAdsBind.getRoot());
+
+    }
+
 
     /**
      * 模拟数据
