@@ -15,6 +15,7 @@ import com.hjq.http.EasyHttp;
 import com.hjq.http.config.IRequestApi;
 import com.hjq.http.config.IRequestInterceptor;
 import com.hjq.http.listener.HttpCallback;
+import com.hjq.http.listener.OnHttpListener;
 import com.hjq.http.model.HttpHeaders;
 import com.hjq.http.model.HttpParams;
 import com.hjq.toast.ToastUtils;
@@ -104,7 +105,7 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
         EasyHttp.post(this)
                 .api(new BannerApi()
                         .setBname("home_banner"))
-                .request(new HttpCallback<HttpData<ArrayList<StartBean>>>(this) {
+                .request(new OnHttpListener<HttpData<ArrayList<StartBean>>>() {
 
                     @Override
                     public void onSucceed(HttpData<ArrayList<StartBean>> result) {
@@ -127,6 +128,11 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
                         //添加透明效果(画廊配合透明效果更棒)
                         itemTop.shopBanner.addPageTransformer(new AlphaPageTransformer());
                     }
+
+                    @Override
+                    public void onFail(Exception e) {
+
+                    }
                 });
 
 
@@ -138,7 +144,7 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
                 .setSortType(-1)
                 .setIndex(index)
                 .setPageSize(size))
-                .request(new HttpCallback<HttpData<ArrayList<ShopGoodsListBean>>>(this){
+                .request(new OnHttpListener<HttpData<ArrayList<ShopGoodsListBean>>>(){
                     @Override
                     public void onSucceed(HttpData<ArrayList<ShopGoodsListBean>> result) {
                         //super.onSucceed(result);
@@ -155,6 +161,11 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
                                 binding.rlFindRefresh.finishLoadMore();
                             }
                         }
+
+                    }
+
+                    @Override
+                    public void onFail(Exception e) {
 
                     }
                 });
