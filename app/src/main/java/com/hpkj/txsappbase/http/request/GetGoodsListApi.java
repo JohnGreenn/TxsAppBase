@@ -5,7 +5,7 @@ import com.hjq.http.config.IRequestApi;
 import com.hpkj.txsappbase.http.model.ScServer;
 
 /**
- * desc：banner请求
+ * desc：商品列表
  * author：Glq
  * time：2021/07/26 16:36
  */

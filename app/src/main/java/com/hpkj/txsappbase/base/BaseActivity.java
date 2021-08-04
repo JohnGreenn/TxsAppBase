@@ -59,11 +59,16 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements Activ
 
     protected void initActivity() {
         initLayout();
+        initBundleData();
         initView();
         initData();
     }
 
 
+    /**
+     * 从上一个界面拿到的数据
+     */
+    protected void initBundleData(){ };
 
     /**
      * 初始化控件
