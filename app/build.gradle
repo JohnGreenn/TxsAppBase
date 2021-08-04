@@ -152,4 +152,7 @@ dependencies {
 
     //banner
     implementation 'com.youth.banner:banner:2.1.0'
+
+    /*tencent tbs*/
+    implementation 'com.tencent.tbs.tbssdk:sdk:43939'
 }

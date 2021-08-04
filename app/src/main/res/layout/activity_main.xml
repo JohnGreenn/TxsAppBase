@@ -13,7 +13,7 @@
         android:orientation="vertical"
         tools:context=".ui.activity.MainActivity">
 
-        <com.hpkj.txsappbase.widget.NoScrollViewPager
+        <com.hpkj.txsappbase.widget.view.NoScrollViewPager
             android:id="@+id/vp_home_pager"
             android:layout_width="match_parent"
             android:layout_height="0px"

@@ -1,4 +1,4 @@
-package com.hpkj.txsappbase.widget;
+package com.hpkj.txsappbase.widget.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
