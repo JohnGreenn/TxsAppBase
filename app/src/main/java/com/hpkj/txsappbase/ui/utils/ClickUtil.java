@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter;
 
 import com.hpkj.txsappbase.http.response.ShopGoodsListBean;
 import com.hpkj.txsappbase.ui.activity.GoodsDetailActivity;
+import com.hpkj.txsappbase.ui.activity.SearchActivity;
 
 /**
  * desc：点击事件处理
@@ -37,6 +38,10 @@ public class ClickUtil {
     public void showGoodsDetail(View view,int goodsid) {
         Intent intent = new Intent(view.getContext(),GoodsDetailActivity.class);
         intent.putExtra("gid",goodsid);
+        view.getContext().startActivity(intent);
+    }
+    public void toSearch(View view) {
+        Intent intent = new Intent(view.getContext(), SearchActivity.class);
         view.getContext().startActivity(intent);
     }
 

@@ -19,6 +19,7 @@ import com.hpkj.txsappbase.http.request.BannerApi;
 import com.hpkj.txsappbase.http.response.StartBean;
 import com.hpkj.txsappbase.ui.activity.MainActivity;
 import com.hpkj.txsappbase.ui.adapter.ImageAdapter;
+import com.hpkj.txsappbase.ui.utils.ClickUtil;
 import com.hpkj.txsappbase.widget.layout.XCollapsingToolbarLayout;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.transformer.AlphaPageTransformer;
@@ -59,7 +60,7 @@ public final class HomeFragment extends TitleBarFragment<MainActivity, FragmentH
         //设置渐变监听
         binding.ctlHomeBar.setOnScrimsListener(this);
 
-
+        binding.setClick(new ClickUtil());
 
     }
 

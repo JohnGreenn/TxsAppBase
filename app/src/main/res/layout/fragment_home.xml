@@ -5,6 +5,12 @@
 
     <data>
 
+        <variable
+            name="click"
+            type="com.hpkj.txsappbase.ui.utils.ClickUtil" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -58,9 +64,6 @@
 
                 </RelativeLayout>
 
-
-
-
                     <androidx.appcompat.widget.Toolbar
                         android:id="@+id/tb_home_title"
                         android:layout_width="match_parent"
@@ -93,7 +96,8 @@
                                 android:gravity="center"
                                 android:text="搜索关键词"
                                 android:textColor="@color/white60"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                android:onClick="@{(view)->click.toSearch(view)}"/>
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/iv_home_search"
