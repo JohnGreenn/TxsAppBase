@@ -21,6 +21,7 @@ import com.hpkj.txsappbase.http.request.BannerApi;
 import com.hpkj.txsappbase.http.request.GetGoodsDetailApi;
 import com.hpkj.txsappbase.http.response.ImgListBean;
 import com.hpkj.txsappbase.http.response.ShopGoodsDetailBean;
+import com.hpkj.txsappbase.http.response.SpecificationsListBean;
 import com.hpkj.txsappbase.http.response.StartBean;
 import com.hpkj.txsappbase.http.response.TestBean;
 import com.hpkj.txsappbase.other.EncryptUtil;
@@ -58,49 +59,14 @@ public class GoodsDetailActivity extends AppActivity<ActivityGoodsDetailBinding>
     @Override
     protected void initView() {
 
-        //渐变
+        //标题栏渐变
         initListener();
     }
-
-    private void initListener() {
-        // 获取顶部图片高度后，设置滚动监听
-        ViewTreeObserver treeObserver = binding.goodsDetailBanner.getViewTreeObserver();
-        treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                binding.goodsDetailBanner.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                imageHeight = binding.goodsDetailBanner.getHeight();
-                binding.scrollView.setScrollViewListener(GoodsDetailActivity.this);
-            }
-        });
-    }
-
-    @Override
-    public void onScrollChanged(GradationScrollView scrollView,int x,int y,int oldx,int oldy) {
-        if(y <= 0) {
-            //设置渐变的头部的背景颜色
-            binding.toolbar.setBackgroundColor(Color.argb((int) 0,255,255,255));
-            binding.toolbar.setTitleColor(Color.TRANSPARENT);
-        } else if(y > 0 && y <= imageHeight) {
-            //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
-            float scale = (float) y / imageHeight;
-            int alpha = (int) (scale * 255);
-            binding.toolbar.setBackgroundColor(Color.argb((int) alpha,255,255,255));
-            binding.toolbar.setTitleColor(Color.argb(alpha,1,24,28));
-        } else {
-            //滑动到banner下面设置普通颜色
-            binding.toolbar.setBackgroundColor(Color.WHITE);
-            binding.toolbar.setTitleColor(Color.parseColor("#333333"));
-        }
-    }
-
-
 
     @Override
     protected void initData() {
 
         EasyHttp.get(this)
-
                 .api(new GetGoodsDetailApi()
                         .setHeaderPass(EncryptUtil.getRequestId(5).trim())
                         .setGid(gid))
@@ -113,6 +79,9 @@ public class GoodsDetailActivity extends AppActivity<ActivityGoodsDetailBinding>
                         useBanner(result.getData().getImageList());
                         //详情页图片
                         userGoodsDetail(result.getData().getBaseInfo().getGoodDesc());
+                        //规格展示
+                        useSpec(result.getData().getSpecificationsList());
+
                     }
 
                     @Override
@@ -121,6 +90,10 @@ public class GoodsDetailActivity extends AppActivity<ActivityGoodsDetailBinding>
                     }
                 });
 
+
+    }
+
+    private void useSpec(List<SpecificationsListBean> specificationsList) {
 
     }
 
@@ -193,4 +166,37 @@ public class GoodsDetailActivity extends AppActivity<ActivityGoodsDetailBinding>
         //添加透明效果(画廊配合透明效果更棒)
         //binding.goodsDetailBanner.addPageTransformer(new AlphaPageTransformer());
     }
+
+    private void initListener() {
+        // 获取顶部图片高度后，设置滚动监听
+        ViewTreeObserver treeObserver = binding.goodsDetailBanner.getViewTreeObserver();
+        treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                binding.goodsDetailBanner.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                imageHeight = binding.goodsDetailBanner.getHeight();
+                binding.scrollView.setScrollViewListener(GoodsDetailActivity.this);
+            }
+        });
+    }
+
+    @Override
+    public void onScrollChanged(GradationScrollView scrollView,int x,int y,int oldx,int oldy) {
+        if(y <= 0) {
+            //设置渐变的头部的背景颜色
+            binding.toolbar.setBackgroundColor(Color.argb((int) 0,255,255,255));
+            binding.toolbar.setTitleColor(Color.TRANSPARENT);
+        } else if(y > 0 && y <= imageHeight) {
+            //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
+            float scale = (float) y / imageHeight;
+            int alpha = (int) (scale * 255);
+            binding.toolbar.setBackgroundColor(Color.argb((int) alpha,255,255,255));
+            binding.toolbar.setTitleColor(Color.argb(alpha,1,24,28));
+        } else {
+            //滑动到banner下面设置普通颜色
+            binding.toolbar.setBackgroundColor(Color.WHITE);
+            binding.toolbar.setTitleColor(Color.parseColor("#333333"));
+        }
+    }
+
 }
