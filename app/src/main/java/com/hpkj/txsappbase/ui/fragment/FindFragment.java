@@ -135,15 +135,24 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
                     }
                 });
 
+        getGoodslist();
+
 
         //EasyConfig.getInstance().addHeader("RequestId",EncryptUtil.getRequestId(5).trim());
+
+
+        //mAdapter.setNewInstance(analogData());
+    }
+
+    public void getGoodslist() {
+
         EasyHttp.get(this)
                 .api(new GetGoodsListApi()
-                .setHeaderPass(EncryptUtil.getRequestId(5).trim())
-                .setLabel("11")
-                .setSortType(-1)
-                .setIndex(index)
-                .setPageSize(size))
+                        .setHeaderPass(EncryptUtil.getRequestId(5).trim())
+                        .setLabel("11")
+                        .setSortType(-1)
+                        .setIndex(index)
+                        .setPageSize(size))
                 .request(new OnHttpListener<HttpData<ArrayList<ShopGoodsListBean>>>(){
                     @Override
                     public void onSucceed(HttpData<ArrayList<ShopGoodsListBean>> result) {
@@ -170,9 +179,6 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
                     }
                 });
 
-
-
-        //mAdapter.setNewInstance(analogData());
     }
 
     public void addAds() {
@@ -208,7 +214,7 @@ public class FindFragment extends TitleBarFragment<MainActivity, FragmentFindBin
     public void onLoadMore(@NonNull @NotNull RefreshLayout refreshLayout) {
         postDelayed(() -> {
             index++;
-            initData();
+            getGoodslist();
             binding.rlFindRefresh.finishRefresh();
         }, 1000);
     }

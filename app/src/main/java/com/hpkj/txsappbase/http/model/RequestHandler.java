@@ -21,6 +21,7 @@ import com.hjq.http.exception.ResultException;
 import com.hjq.http.exception.ServerException;
 import com.hjq.http.exception.TimeoutException;
 import com.hjq.http.exception.TokenException;
+import com.hjq.toast.ToastUtils;
 import com.hpkj.txsappbase.R;
 import com.hpkj.txsappbase.manager.ActivityManager;
 import com.hpkj.txsappbase.ui.activity.LoginActivity;
@@ -125,6 +126,10 @@ public final class RequestHandler implements IRequestHandler {
                 return result;
             } else if (model.getCode() == 1001) {
                 // 代表登录失效，需要重新登录
+                throw new TokenException(mApplication.getString(R.string.http_account_error));
+            } else if (model.getCode() == 201) {
+                // 代表登录失效，需要重新登录
+                ToastUtils.show("可能时间有问题");
                 throw new TokenException(mApplication.getString(R.string.http_account_error));
             }
 
